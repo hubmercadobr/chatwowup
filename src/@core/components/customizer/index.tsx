@@ -82,12 +82,12 @@ const DebouncedColorPicker = (props: DebouncedColorPickerProps) => {
   return (
     <>
       <HexColorPicker
-        color={!isColorFromPrimaryConfig ? settings.primaryColor ?? primaryColorConfig[0].main : '#eee'}
+        color={!isColorFromPrimaryConfig ? (settings.primaryColor ?? primaryColorConfig[0].main) : '#eee'}
         onChange={setDebouncedColor}
       />
       <HexColorInput
         className={styles.colorInput}
-        color={!isColorFromPrimaryConfig ? settings.primaryColor ?? primaryColorConfig[0].main : '#eee'}
+        color={!isColorFromPrimaryConfig ? (settings.primaryColor ?? primaryColorConfig[0].main) : '#eee'}
         onChange={setDebouncedColor}
         prefixed
         placeholder='Type a color'
@@ -170,7 +170,7 @@ const Customizer = ({ breakpoint = 'lg', dir = 'ltr', disableDirection = false }
   return (
     !breakpointReached && (
       <div
-        className={classnames('customizer bs-full flex flex-col', styles.customizer, {
+        className={classnames('customizer', styles.customizer, {
           [styles.show]: isOpen,
           [styles.smallScreen]: isMobileScreen
         })}
@@ -182,19 +182,16 @@ const Customizer = ({ breakpoint = 'lg', dir = 'ltr', disableDirection = false }
           <i className='ri-settings-5-line text-[22px]' />
         </div>
         <div className={classnames('customizer-header flex items-center justify-between', styles.header)}>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-2'>
             <h4 className={styles.customizerTitle}>Theme Customizer</h4>
             <p className={styles.customizerSubtitle}>Customize & Preview in Real Time</p>
           </div>
           <div className='flex gap-4'>
             <div onClick={resetSettings} className='relative flex cursor-pointer'>
-              <i className={classnames('ri-refresh-line', styles.actionActiveColor)} />
+              <i className='ri-refresh-line text-actionActive' />
               <div className={classnames(styles.dotStyles, { [styles.show]: isSettingsChanged })} />
             </div>
-            <i
-              className={classnames('ri-close-line cursor-pointer', styles.actionActiveColor)}
-              onClick={handleToggle}
-            />
+            <i className='ri-close-line text-actionActive cursor-pointer' onClick={handleToggle} />
           </div>
         </div>
         <ScrollWrapper
@@ -204,13 +201,7 @@ const Customizer = ({ breakpoint = 'lg', dir = 'ltr', disableDirection = false }
         >
           <div className={classnames('customizer-body flex flex-col', styles.customizerBody)}>
             <div className='theming-section flex flex-col gap-6'>
-              <Chip
-                variant='tonal'
-                label='Theming'
-                size='small'
-                color='primary'
-                className={classnames('self-start', styles.chip)}
-              />
+              <Chip variant='tonal' label='Theming' size='small' color='primary' className='self-start rounded-sm' />
               <div className='flex flex-col gap-2'>
                 <p className='font-medium'>Primary Color</p>
                 <div className='flex items-center justify-between'>
@@ -360,13 +351,7 @@ const Customizer = ({ breakpoint = 'lg', dir = 'ltr', disableDirection = false }
             </div>
             <hr className={styles.hr} />
             <div className='layout-section flex flex-col gap-6'>
-              <Chip
-                variant='tonal'
-                label='Layout'
-                size='small'
-                color='primary'
-                className={classnames('self-start', styles.chip)}
-              />
+              <Chip variant='tonal' label='Layout' size='small' color='primary' className='self-start rounded-sm' />
               <div className='flex flex-col gap-2'>
                 <p className='font-medium'>Layouts</p>
                 <div className='flex items-center justify-between'>

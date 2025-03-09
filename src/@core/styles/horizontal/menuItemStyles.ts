@@ -3,15 +3,18 @@ import type { Theme } from '@mui/material/styles'
 
 // Type Imports
 import type { MenuItemStyles } from '@menu/types'
-import type { Settings } from '@core/contexts/settingsContext'
 
 // Util Imports
 import { menuClasses } from '@menu/utils/menuClasses'
 
-const menuItemStyles = (settings: Settings, theme: Theme, iconClass: string): MenuItemStyles => ({
+const menuItemStyles = (theme: Theme, iconClass: string): MenuItemStyles => ({
   root: ({ level }) => ({
+    padding: theme.spacing(2),
+    margin: theme.spacing(-2),
     ...(level === 0 && {
-      borderRadius: 'var(--mui-shape-customBorderRadius-lg)'
+      [`& .${menuClasses.button}`]: {
+        borderRadius: 'var(--mui-shape-customBorderRadius-lg)'
+      }
     }),
     [`&.${menuClasses.open} > .${menuClasses.button}`]: {
       backgroundColor: 'var(--mui-palette-action-selected) !important'
@@ -65,7 +68,7 @@ const menuItemStyles = (settings: Settings, theme: Theme, iconClass: string): Me
       ...(level === 1 && {
         marginInline: theme.spacing(1.75)
       }),
-      [`.${menuClasses.active} &`]: {
+      [`.${menuClasses.active}:not([aria-expanded]) > .${menuClasses.active} &`]: {
         color: 'var(--mui-palette-primary-main)'
       }
     }
@@ -89,14 +92,11 @@ const menuItemStyles = (settings: Settings, theme: Theme, iconClass: string): Me
   subMenuContent: {
     backgroundColor: 'var(--mui-palette-background-paper)',
     borderRadius: 'var(--mui-shape-borderRadius)',
-    ...(settings.skin === 'bordered'
-      ? {
-          boxShadow: 'none',
-          border: '1px solid var(--mui-palette-divider)'
-        }
-      : {
-          boxShadow: 'var(--mui-customShadows-lg)'
-        }),
+    boxShadow: 'var(--mui-customShadows-lg)',
+    '[data-skin="bordered"] ~ [data-floating-ui-portal] &': {
+      boxShadow: 'none',
+      border: '1px solid var(--mui-palette-divider)'
+    },
     '& > ul, & > div > ul': {
       paddingBlock: theme.spacing(2)
     }

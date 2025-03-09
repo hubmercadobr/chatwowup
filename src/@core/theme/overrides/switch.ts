@@ -64,14 +64,12 @@ const switchOverrides: Theme['components'] = {
         height: 14,
         boxShadow: 'var(--mui-customShadows-xs)'
       },
-      track: ({ theme }) => ({
+      track: {
         opacity: 1,
         borderRadius: 10,
         backgroundColor: 'var(--mui-palette-action-focus)',
-        boxShadow: `0 0 4px rgb(var(--mui-palette-common-${
-          theme.palette.mode === 'light' ? 'onBackgroundChannel' : 'backgroundChannel'
-        }) / 0.16) inset`
-      })
+        boxShadow: '0 0 4px rgb(0 0 0 / 0.16) inset'
+      }
     }
   }
 }

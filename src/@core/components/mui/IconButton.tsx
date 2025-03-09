@@ -1,14 +1,12 @@
 'use client'
 
-import React from 'react'
-
 import MuiButton from '@mui/material/Button'
-import type { ButtonProps } from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 
+// Config Imports
 import themeConfig from '@configs/themeConfig'
 
-const IconButton = styled(MuiButton)<ButtonProps>(({ color, size, theme, variant }) => {
+const CustomIconButton = styled(MuiButton)(({ color, size, theme, variant }) => {
   return {
     minInlineSize: 0,
     ...(size === 'small'
@@ -54,7 +52,7 @@ const IconButton = styled(MuiButton)<ButtonProps>(({ color, size, theme, variant
         border: 'none !important',
         ...(size === 'small'
           ? {
-              padding: theme.spacing(1.5)
+              padding: theme.spacing(1.75)
             }
           : {
               ...(size === 'large'
@@ -62,7 +60,7 @@ const IconButton = styled(MuiButton)<ButtonProps>(({ color, size, theme, variant
                     padding: theme.spacing(2.25)
                   }
                 : {
-                    padding: theme.spacing(1.75)
+                    padding: theme.spacing(2)
                   })
             })
       }),
@@ -72,8 +70,6 @@ const IconButton = styled(MuiButton)<ButtonProps>(({ color, size, theme, variant
       })
     })
   }
-})
-
-const CustomIconButton = (props: ButtonProps) => <IconButton {...props} />
+}) as typeof MuiButton
 
 export default CustomIconButton

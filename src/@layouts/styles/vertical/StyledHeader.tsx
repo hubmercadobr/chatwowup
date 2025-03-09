@@ -17,6 +17,11 @@ type StyledHeaderProps = {
 }
 
 const StyledHeader = styled.header<StyledHeaderProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  flex-shrink: 0;
   min-block-size: var(--header-height);
 
   &.${verticalLayoutClasses.headerContentCompact} {
@@ -39,9 +44,6 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     .${verticalLayoutClasses.navbar} {
       max-inline-size: ${themeConfig.compactContentWidth}px;
     }
-    .${verticalLayoutClasses.navbar} {
-      max-inline-size: 1440px;
-    }
   }
 
   &.${verticalLayoutClasses.headerFixed} {
@@ -56,11 +58,9 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     }
 
     &.${verticalLayoutClasses.headerDetached}.scrolled .${verticalLayoutClasses.navbar} {
-      ${({ theme }) => `
-        box-shadow: 0 4px 8px -4px rgb(var(--mui-mainColorChannels-${theme.palette.mode}Shadow) / 0.42);
-      `}
+      box-shadow: 0 4px 8px -4px rgb(var(--mui-mainColorChannels-shadow) / 0.42);
 
-      [data-skin="bordered"] & {
+      [data-skin='bordered'] & {
         box-shadow: none;
         border-inline: 1px solid var(--border-color);
         border-block-end: 1px solid var(--border-color);
@@ -115,11 +115,9 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     }
 
     &.${verticalLayoutClasses.headerAttached}.scrolled {
-      ${({ theme }) => `
-        box-shadow: 0 4px 8px -4px rgb(var(--mui-mainColorChannels-${theme.palette.mode}Shadow) / 0.42);
-      `}
+      box-shadow: 0 4px 8px -4px rgb(var(--mui-mainColorChannels-shadow) / 0.42);
 
-      [data-skin="bordered"] & {
+      [data-skin='bordered'] & {
         box-shadow: none;
         border-block-end: 1px solid var(--border-color);
       }
@@ -148,11 +146,9 @@ const StyledHeader = styled.header<StyledHeaderProps>`
       background-color: var(--mui-palette-background-paper);
       border-radius: var(--border-radius);
       padding-inline: ${themeConfig.layoutPadding}px;
-      ${({ theme }) => `
-        box-shadow: 0 4px 8px -4px rgb(var(--mui-mainColorChannels-${theme.palette.mode}Shadow) / 0.42);
-      `}
+      box-shadow: 0 4px 8px -4px rgb(var(--mui-mainColorChannels-shadow) / 0.42);
 
-      [data-skin="bordered"] & {
+      [data-skin='bordered'] & {
         box-shadow: none;
         border: 1px solid var(--border-color);
       }

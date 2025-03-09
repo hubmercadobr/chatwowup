@@ -10,7 +10,6 @@ import VerticalNavContent from './VerticalNavContent'
 
 // Hook Imports
 import useVerticalNav from '@menu/hooks/useVerticalNav'
-import { useSettings } from '@core/hooks/useSettings'
 
 // Styled Component Imports
 import StyledHorizontalNavExpandIcon from '@menu/styles/horizontal/StyledHorizontalNavExpandIcon'
@@ -47,10 +46,8 @@ const HorizontalMenu = () => {
   // Hooks
   const verticalNavOptions = useVerticalNav()
   const theme = useTheme()
-  const { settings } = useSettings()
 
   // Vars
-  const { skin } = settings
   const { transitionDuration } = verticalNavOptions
 
   return (
@@ -59,21 +56,20 @@ const HorizontalMenu = () => {
       verticalNavContent={VerticalNavContent}
       verticalNavProps={{
         customStyles: verticalNavigationCustomStyles(verticalNavOptions, theme),
-        backgroundColor:
-          skin === 'bordered' ? 'var(--mui-palette-background-paper)' : 'var(--mui-palette-background-default)'
+        backgroundColor: 'var(--mui-palette-background-default)'
       }}
     >
       <Menu
         rootStyles={menuRootStyles(theme)}
         renderExpandIcon={({ level }) => <RenderExpandIcon level={level} />}
         renderExpandedMenuItemIcon={{ icon: <i className='ri-circle-fill' /> }}
-        menuItemStyles={menuItemStyles(settings, theme, 'ri-circle-fill')}
+        menuItemStyles={menuItemStyles(theme, 'ri-circle-fill')}
         popoutMenuOffset={{
           mainAxis: ({ level }) => (level && level > 0 ? 4 : 14),
           alignmentAxis: 0
         }}
         verticalMenuProps={{
-          menuItemStyles: verticalMenuItemStyles(verticalNavOptions, theme, settings),
+          menuItemStyles: verticalMenuItemStyles(verticalNavOptions, theme),
           renderExpandIcon: ({ open }) => (
             <RenderVerticalExpandIcon open={open} transitionDuration={transitionDuration} />
           ),
@@ -90,21 +86,21 @@ const HorizontalMenu = () => {
       {/* <Menu
         rootStyles={menuRootStyles(theme)}
         renderExpandIcon={({ level }) => <RenderExpandIcon level={level} />}
-        menuItemStyles={menuItemStyles(settings, theme)}
         renderExpandedMenuItemIcon={{ icon: <i className='ri-circle-fill' /> }}
+        menuItemStyles={menuItemStyles(theme, 'ri-circle-fill')}
         popoutMenuOffset={{
-          mainAxis: ({ level }) => (level && level > 0 ? 14 : 12),
+          mainAxis: ({ level }) => (level && level > 0 ? 4 : 14),
           alignmentAxis: 0
         }}
         verticalMenuProps={{
-          menuItemStyles: verticalMenuItemStyles(verticalNavOptions, theme, settings),
+          menuItemStyles: verticalMenuItemStyles(verticalNavOptions, theme),
           renderExpandIcon: ({ open }) => (
             <RenderVerticalExpandIcon open={open} transitionDuration={transitionDuration} />
           ),
           renderExpandedMenuItemIcon: { icon: <i className='ri-circle-fill' /> }
         }}
       >
-        <GenerateHorizontalMenu menuData={menuData(dictionary, params)} />
+        <GenerateHorizontalMenu menuData={menuData(dictionary)} />
       </Menu> */}
     </HorizontalNav>
   )

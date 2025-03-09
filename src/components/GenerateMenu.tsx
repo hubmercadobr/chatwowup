@@ -78,11 +78,11 @@ export const GenerateVerticalMenu = ({ menuData }: { menuData: VerticalMenuDataT
         )
       }
 
-      // Localize the href
-      const href = menuItem.href
-
       // If the current item is neither a section nor a sub menu, return a MenuItem component
-      const { icon, prefix, suffix, ...rest } = menuItem
+      const { label, icon, prefix, suffix, ...rest } = menuItem
+
+      // Localize the href
+      const href = rest.href
 
       const Icon = icon ? <i className={icon} /> : null
 
@@ -101,7 +101,7 @@ export const GenerateVerticalMenu = ({ menuData }: { menuData: VerticalMenuDataT
           href={href}
           {...(Icon && { icon: Icon })}
         >
-          {menuItem.label}
+          {label}
         </VerticalMenuItem>
       )
     })
@@ -154,11 +154,11 @@ export const GenerateHorizontalMenu = ({ menuData }: { menuData: HorizontalMenuD
         )
       }
 
-      // Localize the href
-      const href = menuItem.href
-
       // If the current item is not a sub menu, return a MenuItem component
-      const { icon, prefix, suffix, ...rest } = menuItem
+      const { label, icon, prefix, suffix, ...rest } = menuItem
+
+      // Localize the href
+      const href = rest.href
 
       const Icon = icon ? <i className={icon} /> : null
 
@@ -177,7 +177,7 @@ export const GenerateHorizontalMenu = ({ menuData }: { menuData: HorizontalMenuD
           href={href}
           {...(Icon && { icon: Icon })}
         >
-          {menuItem.label}
+          {label}
         </HorizontalMenuItem>
       )
     })
