@@ -7,7 +7,6 @@ import { useEffect, useRef } from 'react'
 import { styled, useColorScheme, useTheme } from '@mui/material/styles'
 
 // Type Imports
-import type { getDictionary } from '@/utils/getDictionary'
 import type { Mode, SystemMode } from '@core/types'
 
 // Component Imports
@@ -23,7 +22,6 @@ import { useSettings } from '@core/hooks/useSettings'
 import navigationCustomStyles from '@core/styles/vertical/navigationCustomStyles'
 
 type Props = {
-  dictionary: Awaited<ReturnType<typeof getDictionary>>
   mode: Mode
   systemMode: SystemMode
 }
@@ -65,7 +63,7 @@ const MenuToggleSvg = (
 
 const Navigation = (props: Props) => {
   // Props
-  const { dictionary, mode, systemMode } = props
+  const { mode, systemMode } = props
 
   // Hooks
   const verticalNavOptions = useVerticalNav()
@@ -141,7 +139,7 @@ const Navigation = (props: Props) => {
         )}
       </NavHeader>
       <StyledBoxForShadow ref={shadowRef} />
-      <VerticalMenu dictionary={dictionary} scrollMenu={scrollMenu} />
+      <VerticalMenu scrollMenu={scrollMenu} />
     </VerticalNav>
   )
 }

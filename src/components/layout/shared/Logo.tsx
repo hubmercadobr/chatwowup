@@ -4,13 +4,11 @@ import { useEffect, useMemo, useRef } from 'react'
 // Next Imports
 // import Img from 'next/image'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
 
 // Third-party Imports
 import styled from '@emotion/styled'
 
 // Type Imports
-import type { Locale } from '@configs/i18n'
 import type { VerticalNavContextProps } from '@menu/contexts/verticalNavContext'
 
 // Component Imports
@@ -22,9 +20,6 @@ import themeConfig from '@configs/themeConfig'
 // Hook Imports
 import useVerticalNav from '@menu/hooks/useVerticalNav'
 import { useSettings } from '@core/hooks/useSettings'
-
-// Util Imports
-import { getLocalizedUrl } from '@/utils/i18n'
 
 type LogoTextProps = {
   isHovered?: VerticalNavContextProps['isHovered']
@@ -53,7 +48,6 @@ const Logo = ({ component = false }: { component?: boolean }) => {
   // Hooks
   const { isHovered, transitionDuration } = useVerticalNav()
   const { settings } = useSettings()
-  const { lang: locale } = useParams()
 
   // Vars
   const { layout } = settings
@@ -80,10 +74,7 @@ const Logo = ({ component = false }: { component?: boolean }) => {
   return (
     // eslint-disable-next-line lines-around-comment
     /* @ts-ignore */
-    <LogoWrapper
-      className='flex items-center min-bs-[24px]'
-      {...(!component && { href: getLocalizedUrl('/', locale as Locale) })}
-    >
+    <LogoWrapper className='flex items-center min-bs-[24px]' {...(!component && { href: '/' })}>
       <MaterializeLogo />
       <LogoText
         ref={logoTextRef}
